@@ -39,13 +39,12 @@ public class Bank_Client {
     }
 
     public static void main(String[] args){
-        System.out.println("Starting BankClient");
-        System.out.println("PUT 100, balance: " + Bank_Client.putBalance("Bavo","100"));
-        System.out.println("PUT -50, balance: " + Bank_Client.putBalance("Bavo","-50"));
-        System.out.println("New user, balance: " + Bank_Client.newUser("TestUser", "0"));
-        System.out.println("PUT 100, balance: " + Bank_Client.putBalance("TestUser","100"));
-        System.out.println("GET TestUser balance: " + Bank_Client.getBalance("TestUser"));
-        System.out.println("Delete TestUser");
-        Bank_Client.deleteUser("TestUser");
+        System.out.println("Starting Bank_Client...");
+        System.out.println("New Client Bavo: POST /bank/users/bavo with body: " + Bank_Client.newUser("bavo", "100"));
+        System.out.println("PUT /bank/users/bavo 100 , balance: " + Bank_Client.putBalance("bavo","100"));
+        System.out.println("PUT /bank/users/bavo -50, balance: " + Bank_Client.putBalance("bavo","-50"));
+        System.out.println("GET /bank/users/bavo, balance: " + Bank_Client.getBalance("bavo"));
+        System.out.println("DELETE /bank/users/bavo");
+        Bank_Client.deleteUser("bavo");
     }
 }

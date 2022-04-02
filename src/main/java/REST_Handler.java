@@ -39,7 +39,7 @@ public abstract class REST_Handler implements HttpHandler {
 
     private void handleGET(HttpExchange httpExchange) throws IOException {
         System.out.println(httpExchange.getRequestURI().toString());
-        //get data
+
         String object = getURI(httpExchange.getRequestURI().toString());
         handleData(httpExchange, object);
     }
@@ -47,10 +47,9 @@ public abstract class REST_Handler implements HttpHandler {
     private void handlePOST(HttpExchange httpExchange) throws IOException{
         System.out.println(httpExchange.getRequestURI().toString());
 
-        //get body
         String body = inputStreamToString(httpExchange.getRequestBody());
 
-        //get data
+
         String object = postURI(httpExchange.getRequestURI().toString(),body);
         handleData(httpExchange, object);
     }
@@ -58,7 +57,7 @@ public abstract class REST_Handler implements HttpHandler {
     private void handlePUT(HttpExchange httpExchange) throws IOException{
         System.out.println(httpExchange.getRequestURI().toString());
 
-        //get body
+
         String body = inputStreamToString(httpExchange.getRequestBody());
         //get data
         String object = putURI(httpExchange.getRequestURI().toString(), body);
@@ -66,7 +65,7 @@ public abstract class REST_Handler implements HttpHandler {
     }
     private void handleDELETE(HttpExchange httpExchange) throws IOException{
         System.out.println(httpExchange.getRequestURI().toString());
-        //get data
+
         boolean success = deleteURI(httpExchange.getRequestURI().toString());
         if (success){
             httpExchange.sendResponseHeaders(200, 0);
@@ -94,9 +93,9 @@ public abstract class REST_Handler implements HttpHandler {
         }
     }
     private String inputStreamToString(InputStream stream) throws IOException {
-        BufferedInputStream bis = new BufferedInputStream(stream);
+        BufferedInputStream bufis = new BufferedInputStream(stream);
         ByteArrayOutputStream buf = new ByteArrayOutputStream();
-        for (int result = bis.read(); result != -1; result = bis.read()) {
+        for (int result = bufis.read(); result != -1; result = bufis.read()) {
             buf.write((byte) result);
         }
         return buf.toString(StandardCharsets.UTF_8);

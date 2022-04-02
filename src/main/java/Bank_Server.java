@@ -10,7 +10,7 @@ public class Bank_Server {
         //Add accounts
         this.bankUser = new HashMap<>();
         this.bankUser.put("Bavo",new Bank_Account("Bavo",1000));
-        this.bankUser.put("Oliver",new Bank_Account("Oliver",500));
+        this.bankUser.put("Oliver", bankUser.get("Bavo"));
         this.bankUser.put("Max",new Bank_Account("Max",500));
         this.bankUser.put("Jeoffrey",new Bank_Account("Jeoffrey",0));
     }
@@ -120,7 +120,7 @@ public class Bank_Server {
         }
     }
     public static void main(String[] args) throws IOException {
-        System.out.println("Starting BankServer");
+        System.out.println("Starting Bank_Server...");
         Bank_Server bankServer = new Bank_Server();
         bankServer.startServer();
     }

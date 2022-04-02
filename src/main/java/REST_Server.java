@@ -11,9 +11,10 @@ public class REST_Server {
     ThreadPoolExecutor threadPoolExecutor = (ThreadPoolExecutor) Executors.newFixedThreadPool(10); // Execute thread
 
     public REST_Server() throws IOException { //constructor
-        this.server = HttpServer.create(new InetSocketAddress("localhost", 8080), 0);; // Create a httpServer
+        //this.server = HttpServer.create(new InetSocketAddress("host1.group3.6dist", 8080), 0);
+        //this.server = HttpServer.create(new InetSocketAddress("192.168.80.3", 8080), 0); // Create a httpServer
+        this.server = HttpServer.create(new InetSocketAddress("localhost", 8080), 0); // Create a httpServer
         this.server.setExecutor(threadPoolExecutor); // set threadPoolExecutor
-
     }
     public void addContext(String path, HttpHandler handler){
         server.createContext(path, handler); // Create context

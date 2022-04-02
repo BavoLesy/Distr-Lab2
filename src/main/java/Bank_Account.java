@@ -30,7 +30,6 @@ public class Bank_Account {
                 ", balance:" + balance +
                 '}';
     }
-
     public synchronized long putBalance(long value) {
         this.balance += value;
         return this.balance;
