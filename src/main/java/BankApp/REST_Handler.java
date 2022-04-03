@@ -1,3 +1,5 @@
+package BankApp;
+
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
@@ -5,11 +7,7 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 
 public abstract class REST_Handler implements HttpHandler {
-    protected String contextPath ="/";
     public REST_Handler(){}
-    public REST_Handler(String contextPath) {
-        this.contextPath = contextPath;
-    }
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
@@ -43,17 +41,6 @@ public abstract class REST_Handler implements HttpHandler {
         String object = getURI(httpExchange.getRequestURI().toString());
         handleData(httpExchange, object);
     }
-
-    private void handlePOST(HttpExchange httpExchange) throws IOException{
-        System.out.println(httpExchange.getRequestURI().toString());
-
-        String body = inputStreamToString(httpExchange.getRequestBody());
-
-
-        String object = postURI(httpExchange.getRequestURI().toString(),body);
-        handleData(httpExchange, object);
-    }
-
     private void handlePUT(HttpExchange httpExchange) throws IOException{
         System.out.println(httpExchange.getRequestURI().toString());
 
@@ -61,6 +48,15 @@ public abstract class REST_Handler implements HttpHandler {
         String body = inputStreamToString(httpExchange.getRequestBody());
         //get data
         String object = putURI(httpExchange.getRequestURI().toString(), body);
+        handleData(httpExchange, object);
+    }
+    private void handlePOST(HttpExchange httpExchange) throws IOException{
+        System.out.println(httpExchange.getRequestURI().toString()); //for which user?
+
+        String body = inputStreamToString(httpExchange.getRequestBody());
+
+
+        String object = postURI(httpExchange.getRequestURI().toString(),body);
         handleData(httpExchange, object);
     }
     private void handleDELETE(HttpExchange httpExchange) throws IOException{

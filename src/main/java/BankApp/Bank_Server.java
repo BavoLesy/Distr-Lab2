@@ -1,10 +1,12 @@
+package BankApp;
+
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 
 public class Bank_Server {
-    HashMap<String,Bank_Account> bankUser; //link account with name of a user
+    HashMap<String, Bank_Account> bankUser; //link account with name of a user
 
     public Bank_Server() {
         //Add accounts
@@ -40,7 +42,7 @@ public class Bank_Server {
                     String user = iterator.next(); //we know this is the user because of our Context
                     if (!bank.containsKey(user))
                         return null; // If the user does not exist => maybe write 'user doesn't exist'
-                    balance = bank.get(user).getBalance(); //get balance from Bank_Account
+                    balance = bank.get(user).getBalance(); //get balance from BankApp.Bank_Account
 
                 }
             }
@@ -120,7 +122,7 @@ public class Bank_Server {
         }
     }
     public static void main(String[] args) throws IOException {
-        System.out.println("Starting Bank_Server...");
+        System.out.println("Starting BankApp.Bank_Server...");
         Bank_Server bankServer = new Bank_Server();
         bankServer.startServer();
     }

@@ -1,3 +1,5 @@
+package BankApp;
+
 import java.io.IOException;
 public class Bank_Client {
     //HERE WE TEST OUR SERVER / CLIENT
@@ -39,7 +41,7 @@ public class Bank_Client {
     }
 
     public static void main(String[] args){
-        System.out.println("Starting Bank_Client...");
+        System.out.println("Starting BankApp.Bank_Client...");
         System.out.println("New Client Bavo: POST /bank/users/bavo with body: " + Bank_Client.newUser("bavo", "100"));
         System.out.println("PUT /bank/users/bavo 100 , balance: " + Bank_Client.putBalance("bavo","100"));
         System.out.println("PUT /bank/users/bavo -50, balance: " + Bank_Client.putBalance("bavo","-50"));
