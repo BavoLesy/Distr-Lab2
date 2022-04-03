@@ -1,6 +1,5 @@
 package BankingAppSpringBoot.BankingServer;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -25,15 +24,13 @@ public class BankingServer {
 
     }
     @PutMapping("BankingServer/users/{user}")
-    public ResponseEntity<String> putBalance(@PathVariable(value = "user") String user, @RequestBody String money) {
+    public String putBalance(@PathVariable(value = "user") String user, @RequestBody String money) {
         long balance;
         if (bankUser.containsKey(user)) {
             balance = bankUser.get(user).putBalance(Integer.parseInt(money)) ;
-            System.out.println(balance);
-            return ResponseEntity.ok(Long.toString(balance));
-
+            return "User " + user + " new balance: " + balance;
         }
-        return ResponseEntity.ok("User " + user + " doesn't exist");
+        return "User " + user + " doesn't exist";
     }
     @PostMapping("BankingServer/users/{user}")
     public String newUser(@PathVariable(value = "user") String user, @RequestBody int money){
