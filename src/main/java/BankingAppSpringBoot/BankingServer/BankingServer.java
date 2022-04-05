@@ -35,7 +35,7 @@ public class BankingServer {
     @PostMapping("BankingServer/users/joint/{user}")
     public String jointAccount(@PathVariable(value = "user") String user, @RequestBody String jointAccount){
         long balance;
-        if(!bankUser.containsKey(jointAccount)){
+        if(!bankUser.containsKey(user)){
             bankUser.put(user, bankUser.get(jointAccount));
         }
         balance = bankUser.get(user).getBalance();
