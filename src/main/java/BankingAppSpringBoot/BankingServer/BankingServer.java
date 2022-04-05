@@ -32,6 +32,16 @@ public class BankingServer {
         }
         return "User " + user + " doesn't exist";
     }
+    @PostMapping("BankingServer/users/joint/{user}")
+    public String jointAccount(@PathVariable(value = "user") String user, @RequestBody String jointAccount){
+        long balance;
+        if(!bankUser.containsKey(jointAccount)){
+            bankUser.put(user, bankUser.get(jointAccount));
+        }
+        balance = bankUser.get(user).getBalance();
+        return "User " + user + " Added to " + jointAccount + " with balance: " + balance;
+    }
+
     @PostMapping("BankingServer/users/{user}")
     public String newUser(@PathVariable(value = "user") String user, @RequestBody int money){
         long balance;
