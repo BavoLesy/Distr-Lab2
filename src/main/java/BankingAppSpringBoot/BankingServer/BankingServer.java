@@ -32,14 +32,21 @@ public class BankingServer {
         }
         return "User " + user + " doesn't exist";
     }
-    @PostMapping("BankingServer/users/joint/{user}")
-    public String jointAccount(@PathVariable(value = "user") String user, @RequestBody String jointAccount){
+    //We add user1 to user2
+    @PostMapping("BankingServer/users/{user1}/{user2}")
+    public String jointAccount(@PathVariable(value = "user1") String user1, @PathVariable(value = "user2") String user2){
         long balance;
-        if(!bankUser.containsKey(user)){
-            bankUser.put(user, bankUser.get(jointAccount));
+        if(!bankUser.containsKey(user1)){
+            if(bankUser.containsKey(user2)) {
+                bankUser.put(user1, bankUser.get(user2));
+            }else{
+                return "User " + user2 + " Doesn't exist";
+            }
+        }else{
+            return "User " + user1 + " Already exists";
         }
-        balance = bankUser.get(user).getBalance();
-        return "User " + user + " Added to " + jointAccount + " with balance: " + balance;
+        balance = bankUser.get(user1).getBalance();
+        return "User " + user1 + " Added to " + user2 + " with balance: " + balance;
     }
 
     @PostMapping("BankingServer/users/{user}")
